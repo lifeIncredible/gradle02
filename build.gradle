@@ -33,9 +33,13 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'jstl:jstl:1.2'
     compileOnly 'javax.servlet:servlet-api:2.5'
-    testImplementation group: 'junit' ,name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
-    useJUnitPlatform()
+    enabled(true)       // 是否生成测试报告（执行所有携带@Test注解的方法）
+    useJUnitPlatform() // Junit 5
+    include("com/**")  // 执行的目录
+    exclude("com/abc/**") // 排除的目录
 }
